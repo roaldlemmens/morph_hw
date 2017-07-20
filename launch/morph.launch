@@ -1,0 +1,32 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+  <arg name="node_name" default="morph_robot" />
+  <!-- Use udev rules to setup aliases for right/left wheel port.
+  <arg name="right_wheel_port" default="/dev/right_wheel_esc" />
+  <arg name="left_wheel_port" default="/dev/right_wheel_esc" />
+-->
+  <arg name="right_wheel_port" default="/dev/ttyACM0" />
+  <arg name="left_wheel_port" default="/dev/ttyACM1" />
+  <!-- Parameter for enabling rotor position publishing
+       Possible values are "inductance", "observer", "encoder", "pid_pos", "pid_pos_error", "encoder_observer_error" -->
+  <arg name="rotor_position_source" default="encoder" />
+
+  <!-- Optionally launch manager in GDB, for debugging -->
+  <arg name="debug" default="false" />
+  <arg if="$(arg debug)" name="launch_prefix" value="xterm -e gdb --args" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+
+  <!-- Also globally disable bond heartbeat timeout in debug mode, so everything
+       doesn't die when you hit a break point -->
+  <param if="$(arg debug)" name="/bond_disable_heartbeat_timeout" value="true" />
+
+    <node pkg="morph_hw" type="robot" name="$(arg node_name)" output="screen" launch-prefix="$(arg launch_prefix)" >
+      <param name="right_wheel_port" value="$(arg right_wheel_port)" />
+      <param name="left_wheel_port" value="$(arg left_wheel_port)" />
+      <param name="right_wheel_ikv" value="8.821034775" />
+      <param name="left_wheel_ikv" value="8.543328017" />
+      <param name="tacho_pulses_per_revolution" value="90" />
+      <param name="motor_poles" value="15" />
+      <param name="rotor_position_source" value="$(arg rotor_position_source)" />
+    </node>
+</launch>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package>
+  <name>morph_hw</name>
+  <version>0.1.0</version>
+  <description>The morph_hw package provides the robot driver for creating a differential drive mobile base for the Modular Open Robotics Platform for Hackers project</description>
+  <maintainer email="roaldlemmens@gmail.com">Roald Lemmens</maintainer>
+  <license>GPLv3</license>
+  <url type="website">https://hackaday.io/project/25730-morph-modular-open-robotics-platform-for-hackers</url>
+  <url type="repository">https://github.com/roaldlemmens/morph_hw</url>
+  <url type="bugtracker">https://github.com/roaldlemmens/morph_hw/issues</url>
+  <author email="roaldlemmens@gmail.com">Roald Lemmens</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>controller_manager</build_depend>
+  <build_depend>hardware_interface</build_depend>
+  <build_depend>vesc_driver</build_depend>
+  <build_depend>vesc_msgs</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>controller_manager</run_depend>
+  <run_depend>hardware_interface</run_depend>
+  <run_depend>vesc_driver</run_depend>
+  <run_depend>vesc_msgs</run_depend>
+
+  <export>
+  </export>
+</package>
