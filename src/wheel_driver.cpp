@@ -137,9 +137,9 @@ void wheel_driver::vescPacketCallback(const boost::shared_ptr<VescPacket const>&
     if (isnan(encoderDisplacementPreviousValue))
       encoderDisplacementPreviousValue = currentPosition;
 
-    // Only calculate encoderDisplacement when the speed is above 5 ERPM, because
+    // Only calculate encoderDisplacement when the speed actually changes, because
     // stationary value can fluctuate a few degrees and can cause issues at 360 / 0 (2pi / 0 ) point
-    const int MIN_SPEED_ERPM = 5; // TODO: Parameter for threshold
+    const int MIN_SPEED_ERPM = 1;
     if (speed > MIN_SPEED_ERPM)
     {
       // Forward motion delta calculation
