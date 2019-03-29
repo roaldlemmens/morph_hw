@@ -76,7 +76,7 @@ MORPH_HW::MORPH_HW(std::string right_wheel_port, std::string left_wheel_port, do
       double requestedERPM = _rad_per_sec_to_erpm_conversion_factor * _cmd[0];
       ROS_DEBUG("Requested ERPM left: %f", requestedERPM);
       left_request_dutyCycle = requestedERPM / (left_voltage_in * _left_wheel_ikv * _motor_poles * 2);
-      ROS_INFO("Left request dutycycle : %f", left_request_dutyCycle);
+      ROS_DEBUG("Left request dutycycle : %f", left_request_dutyCycle);
        _left_wheel_driver.setDutyCycle(left_request_dutyCycle);
     }
     else
@@ -91,7 +91,7 @@ MORPH_HW::MORPH_HW(std::string right_wheel_port, std::string left_wheel_port, do
       double requestedERPM = -_rad_per_sec_to_erpm_conversion_factor * _cmd[1];
       ROS_DEBUG("Requested ERPM right: %f", requestedERPM);
       right_request_dutyCycle = requestedERPM / (right_voltage_in * _right_wheel_ikv * _motor_poles * 2);
-      ROS_INFO("Right request dutycycle : %f", right_request_dutyCycle);
+      ROS_DEBUG("Right request dutycycle : %f", right_request_dutyCycle);
       _right_wheel_driver.setDutyCycle(right_request_dutyCycle);
     }
     else
