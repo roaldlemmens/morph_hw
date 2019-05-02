@@ -86,7 +86,7 @@ MORPH_HW::MORPH_HW(std::string right_wheel_port, std::string left_wheel_port, do
   void MORPH_HW::write(const ros::Time& time, const ros::Duration& period)
   {
     ros::Time currentTime = ros::Time::now();
-    ros::Duration duration = currentTime - previousUpdateTime_;
+    ros::Duration duration = currentTime - _previous_update_time;
     double left_voltage_in = _left_wheel_driver.getVoltageIn();
     double left_request_dutyCycle = 0.0;
 
@@ -124,5 +124,7 @@ MORPH_HW::MORPH_HW(std::string right_wheel_port, std::string left_wheel_port, do
     {
       _right_wheel_driver.releaseMotor();
     }
+
+    _previous_update_time = currentTime;
   }
 }

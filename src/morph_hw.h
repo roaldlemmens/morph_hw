@@ -37,7 +37,7 @@ private:
   double _left_wheel_erpm;
   control_toolbox::Pid _right_wheel_pid_controller;
   control_toolbox::Pid _left_wheel_pid_controller;
-  ros::Time previousUpdateTime_;
+  ros::Time _previous_update_time;
 };
 
 }
