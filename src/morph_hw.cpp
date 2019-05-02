@@ -93,7 +93,7 @@ MORPH_HW::MORPH_HW(std::string right_wheel_port, std::string left_wheel_port, do
     if (_cmd[0] != 0.0)
     {
       double requestedERPM = _rad_per_sec_to_erpm_conversion_factor * _cmd[0];
-      double error = _left_wheel_erpm - requestedERPM;
+      double error = requestedERPM - _left_wheel_erpm;
       double command = _left_wheel_pid_controller.computeCommand(error, duration);
 
       ROS_DEBUG("Requested ERPM left: %f - actual %f", requestedERPM, _left_wheel_erpm);
@@ -111,7 +111,7 @@ MORPH_HW::MORPH_HW(std::string right_wheel_port, std::string left_wheel_port, do
     if (_cmd[1] != 0.0)
     {
       double requestedERPM = -_rad_per_sec_to_erpm_conversion_factor * _cmd[1];
-      double error = _right_wheel_erpm - requestedERPM;
+      double error = requestedERPM - _right_wheel_erpm;
       double command = _right_wheel_pid_controller.computeCommand(error, duration);
 
       ROS_DEBUG("Requested ERPM right: %f - actual %f", requestedERPM, _right_wheel_erpm);
