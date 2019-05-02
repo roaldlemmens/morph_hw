@@ -5,6 +5,7 @@
 #include <hardware_interface/joint_command_interface.h>
 #include <hardware_interface/joint_state_interface.h>
 #include <hardware_interface/robot_hw.h>
+#include <control_toolbox/pid.h>
 
 namespace morph
 {
@@ -32,6 +33,11 @@ private:
   double _pos[2];
   double _vel[2];
   double _eff[2];
+  double _right_wheel_erpm;
+  double _left_wheel_erpm;
+  control_toolbox::Pid _right_wheel_pid_controller;
+  control_toolbox::Pid _left_wheel_pid_controller;
+  ros::Time previousUpdateTime_;
 };
 
 }

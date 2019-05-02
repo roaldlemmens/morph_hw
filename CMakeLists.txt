@@ -4,7 +4,7 @@ project(morph_hw)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS vesc_driver vesc_msgs controller_manager)
+find_package(catkin REQUIRED COMPONENTS vesc_driver vesc_msgs controller_manager control_toolbox)
 
 ## System dependencies are found with CMake's conventions
 #find_package(Boost REQUIRED COMPONENTS system)
