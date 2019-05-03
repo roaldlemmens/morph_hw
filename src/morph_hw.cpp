@@ -64,8 +64,6 @@ MORPH_HW::MORPH_HW(std::string right_wheel_port, std::string left_wheel_port, do
 
   void MORPH_HW::read(const ros::Time& time, const ros::Duration& period)
   {
-    ROS_DEBUG("Reading from hardware...");
-
     _pos[0] = _left_wheel_driver.getDisplacement()*_tacho_conversion_factor;
     _pos[1] = -_right_wheel_driver.getDisplacement()*_tacho_conversion_factor;
     _left_wheel_erpm =  _left_wheel_driver.getSpeed();
