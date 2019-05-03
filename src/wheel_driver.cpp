@@ -41,7 +41,6 @@ wheel_driver::wheel_driver(std::string port, ros::NodeHandle nh, std::string nam
 void wheel_driver::setDutyCycle(double dutyCycle)
 {
   if (dutyCycle >= -0.5 && dutyCycle <= 0.5) {
-      ROS_DEBUG("Set duty-cycle %s : %f", name_.c_str(), dutyCycle);
       vesc_.setDutyCycle(dutyCycle);
   }
   else {
@@ -51,7 +50,6 @@ void wheel_driver::setDutyCycle(double dutyCycle)
 
 void wheel_driver::releaseMotor()
 {
-  ROS_DEBUG("Releasing motor %s", name_.c_str());
   vesc_.setCurrent(0.0);
 }
 
