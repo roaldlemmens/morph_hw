@@ -68,7 +68,7 @@ MORPH_HW::MORPH_HW(std::string right_wheel_port, std::string left_wheel_port, do
     _pos[1] = -_right_wheel_driver.getDisplacement()*_tacho_conversion_factor;
     _left_wheel_erpm =  _left_wheel_driver.getSpeed();
     _vel[0] = _left_wheel_erpm /_rad_per_sec_to_erpm_conversion_factor;
-    _right_wheel_erpm = -_right_wheel_driver.getSpeed();
+    _right_wheel_erpm = _right_wheel_driver.getSpeed();
     _vel[1] = _right_wheel_erpm/_rad_per_sec_to_erpm_conversion_factor;
 
     double encoderDisplacementLeft = _left_wheel_driver.getEncoderDisplacement();
