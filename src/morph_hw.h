@@ -21,7 +21,9 @@ private:
   wheel_driver _right_wheel_driver;
   wheel_driver _left_wheel_driver;
   double _right_wheel_ikv;
+  double _right_wheel_factor;
   double _left_wheel_ikv;
+  double _left_wheel_factor;
   double _tacho_pulses_per_revolution;
   double _tacho_conversion_factor;
   double _rad_per_sec_to_erpm_conversion_factor;

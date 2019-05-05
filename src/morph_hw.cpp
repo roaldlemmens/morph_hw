@@ -46,6 +46,14 @@ MORPH_HW::MORPH_HW(std::string right_wheel_port, std::string left_wheel_port, do
 
     registerInterface(&_jnt_vel_interface);
 
+    if (!nh.getParam("left_wheel_factor", _left_wheel_factor)) {
+      _left_wheel_factor = 1.0;
+    }
+
+    if (!nh.getParam("right_wheel_factor", _right_wheel_factor)) {
+      _right_wheel_factor = 1.0;
+    }
+
     if (!nh.hasParam("/right_wheel/pid_parameters/p"))
       nh.setParam("/right_wheel/pid_parameters/p", 1.0);
 
@@ -87,7 +95,7 @@ MORPH_HW::MORPH_HW(std::string right_wheel_port, std::string left_wheel_port, do
 
     if (_cmd[0] != 0.0)
     {
-      double requestedERPM = _rad_per_sec_to_erpm_conversion_factor * _cmd[0];
+      double requestedERPM = _rad_per_sec_to_erpm_conversion_factor * _cmd[0] * _left_wheel_factor;
       double error = requestedERPM - _left_wheel_erpm;
       double command = _left_wheel_pid_controller.computeCommand(error, duration);
 
@@ -104,7 +112,7 @@ MORPH_HW::MORPH_HW(std::string right_wheel_port, std::string left_wheel_port, do
     double right_request_dutyCycle = 0.0;
     if (_cmd[1] != 0.0)
     {
-      double requestedERPM = -_rad_per_sec_to_erpm_conversion_factor * _cmd[1];
+      double requestedERPM = -_rad_per_sec_to_erpm_conversion_factor * _cmd[1] * _right_wheel_factor;
       double error = requestedERPM - _right_wheel_erpm;
       double command = _right_wheel_pid_controller.computeCommand(error, duration);
 

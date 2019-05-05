@@ -24,7 +24,9 @@
       <param name="right_wheel_port" value="$(arg right_wheel_port)" />
       <param name="left_wheel_port" value="$(arg left_wheel_port)" />
       <param name="right_wheel_ikv" value="8.821034775" />
+      <param name="right_wheel_factor" value="1.0" />
       <param name="left_wheel_ikv" value="8.543328017" />
+      <param name="left_wheel_factor" value="1.0" />
       <param name="tacho_pulses_per_revolution" value="90" />
       <param name="motor_poles" value="15" />
       <param name="rotor_position_source" value="$(arg rotor_position_source)" />
