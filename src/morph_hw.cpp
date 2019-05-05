@@ -47,10 +47,12 @@ MORPH_HW::MORPH_HW(std::string right_wheel_port, std::string left_wheel_port, do
     registerInterface(&_jnt_vel_interface);
 
     if (!nh.getParam("left_wheel_factor", _left_wheel_factor)) {
+      ROS_INFO("Using default left_wheel_factor of 1.0");
       _left_wheel_factor = 1.0;
     }
 
     if (!nh.getParam("right_wheel_factor", _right_wheel_factor)) {
+      ROS_INFO("Using default right_wheel_factor of 1.0");
       _right_wheel_factor = 1.0;
     }
 

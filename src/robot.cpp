@@ -10,7 +10,6 @@ int main(int argc, char** argv)
   ros::AsyncSpinner spinner(4);
   spinner.start();
 
-  ros::NodeHandle nh;
   ros::NodeHandle private_nh("~");
   std::string right_wheel_port;
   std::string left_wheel_port;
@@ -79,7 +78,7 @@ int main(int argc, char** argv)
     }
   }
 
-  morph::MORPH_HW robot(right_wheel_port, left_wheel_port, right_wheel_ikv, left_wheel_ikv, tacho_pulses_per_revolution, motor_poles, mode, nh);
+  morph::MORPH_HW robot(right_wheel_port, left_wheel_port, right_wheel_ikv, left_wheel_ikv, tacho_pulses_per_revolution, motor_poles, mode, private_nh);
   controller_manager::ControllerManager cm(&robot);
   ROS_INFO_STREAM_NAMED("hardware_interface","Starting loop");
   while (ros::ok())
