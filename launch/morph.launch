@@ -14,9 +14,11 @@
   <arg if="$(arg debug)" name="launch_prefix" value="xterm -e gdb --args" />
   <arg unless="$(arg debug)" name="launch_prefix" value="" />
 
+  
   <!-- Also globally disable bond heartbeat timeout in debug mode, so everything
        doesn't die when you hit a break point -->
   <param if="$(arg debug)" name="/bond_disable_heartbeat_timeout" value="true" />
+  <rosparam file="$(find morph_hw)/config/pid.yaml" command="load"/>
 
     <node pkg="morph_hw" type="robot" name="$(arg node_name)" output="screen" launch-prefix="$(arg launch_prefix)" >
       <param name="right_wheel_port" value="$(arg right_wheel_port)" />
