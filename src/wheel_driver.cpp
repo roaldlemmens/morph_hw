@@ -40,12 +40,7 @@ wheel_driver::wheel_driver(std::string port, ros::NodeHandle nh, std::string nam
 
 void wheel_driver::setDutyCycle(double dutyCycle)
 {
-  if (dutyCycle >= -1.0 && dutyCycle <= 1.0) {
-      vesc_.setDutyCycle(dutyCycle);
-  }
-  else {
-      ROS_ERROR("Dutycycle out-of-range %s : %f", name_.c_str(), dutyCycle);
-  }
+     vesc_.setDutyCycle(dutyCycle);
 }
 
 void wheel_driver::releaseMotor()
