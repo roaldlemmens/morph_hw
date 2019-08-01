@@ -84,10 +84,15 @@ MORPH_HW::MORPH_HW(std::string right_wheel_port, std::string left_wheel_port, do
     double encoderDisplacementLeft = _left_wheel_driver.getEncoderDisplacement();
     double encoderDisplacementRight = _right_wheel_driver.getEncoderDisplacement();
 
-    ROS_DEBUG("Left wheel: position - %f - encoder %f - velocity %f - commands %f - effort %f", _pos[0], encoderDisplacementLeft, _vel[0], _cmd[0], _eff[0]);
-    ROS_DEBUG("Right wheel: position - %f - encoder %f - velocity %f - commands %f - effort %f", _pos[1], encoderDisplacementRight, _vel[1], _cmd[1], _eff[1]);
-  }
-
+    /*
+    if (_cmd[0]>0) {
+        ROS_DEBUG("Left wheel: position - %f - encoder %f - velocity %f - commands %f - effort %f", _pos[0], encoderDisplacementLeft, _vel[0], _cmd[0], _eff[0]);
+    }
+    if (_cmd[1]>0) {
+        ROS_DEBUG("Right wheel: position - %f - encoder %f - velocity %f - commands %f - effort %f", _pos[1], encoderDisplacementRight, _vel[1], _cmd[1], _eff[1]);
+   } */
+ }
+  
   void MORPH_HW::write(const ros::Time& time, const ros::Duration& period)
   {
     ros::Time currentTime = ros::Time::now();
@@ -103,8 +108,8 @@ MORPH_HW::MORPH_HW(std::string right_wheel_port, std::string left_wheel_port, do
       double setERPM = _left_wheel_erpm + command;
 
       left_request_dutyCycle = setERPM / (40 * _left_wheel_ikv * _motor_poles * 2);
-      ROS_DEBUG("Requested ERPM left: %f - actual %f - command %f - set %f - dutycycle %f ", requestedERPM, _left_wheel_erpm, command, setERPM, left_request_dutyCycle);
-      _left_wheel_driver.setDutyCycle(left_request_dutyCycle);
+      ROS_DEBUG("Requested ERPM left  : %f - actual %f - - error %f - command %f - set %f - dutycycle %f ", requestedERPM, _left_wheel_erpm, error, command, setERPM, left_request_dutyCycle);
+      _left_wheel_driver.setDutyCycle(command);
     }
     else
     {
@@ -121,8 +126,8 @@ MORPH_HW::MORPH_HW(std::string right_wheel_port, std::string left_wheel_port, do
       double setERPM = _right_wheel_erpm + command;
 
       right_request_dutyCycle = setERPM / (40 * _right_wheel_ikv * _motor_poles * 2);
-      ROS_DEBUG("Requested ERPM right: %f - actual %f - command %f - set %f - dutycycle %f", requestedERPM, _right_wheel_erpm, command, setERPM, right_request_dutyCycle);
-      _right_wheel_driver.setDutyCycle(right_request_dutyCycle);
+      ROS_DEBUG("Requested ERPM right : %f - actual %f - error %f - command %f - set %f - dutycycle %f", requestedERPM, _right_wheel_erpm, error, command, setERPM, right_request_dutyCycle);
+      _right_wheel_driver.setDutyCycle(command);
     }
     else
     {
