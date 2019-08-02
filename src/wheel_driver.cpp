@@ -27,8 +27,8 @@ wheel_driver::wheel_driver(std::string port, ros::NodeHandle nh, std::string nam
     // create vesc state (telemetry) publisher
     state_pub_ = nh.advertise<vesc_msgs::VescStateStamped>(name + "/sensors/core", 10);
 
-    // create a 50Hz timer, used for state machine & polling VESC telemetry
-    timer_ = nh.createTimer(ros::Duration(1.0/50.0), &wheel_driver::timerCallback, this);
+    // create a 200Hz timer, used for state machine & polling VESC telemetry
+    timer_ = nh.createTimer(ros::Duration(1.0/200.0), &wheel_driver::timerCallback, this);
 
     if (rotor_position_mode != DISP_POS_MODE_NONE) {
       // create rotor position publisher
