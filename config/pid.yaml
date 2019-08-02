@@ -1,14 +1,14 @@
 left_wheel/pid_parameters:
   antiwindup: false
   d: 0.0
-  i: 0.004
+  i: 0.008
   i_clamp_max: 0.1
   i_clamp_min: -0.1
-  p: 0.0004
+  p: 0.0006
 right_wheel/pid_parameters:
   antiwindup: false
   d: 0.0
-  i: 0.004
+  i: 0.008
   i_clamp_max: 0.1
   i_clamp_min: -0.1
-  p: 0.0004
+  p: 0.0006
