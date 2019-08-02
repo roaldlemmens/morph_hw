@@ -57,14 +57,14 @@ MORPH_HW::MORPH_HW(std::string right_wheel_port, std::string left_wheel_port, do
     }
 
     if (!nh.hasParam("/right_wheel/pid_parameters/p"))
-      nh.setParam("/right_wheel/pid_parameters/p", 1.0);
+      nh.setParam("/right_wheel/pid_parameters/p", 0.0001);
 
     if (!_right_wheel_pid_controller.init(ros::NodeHandle(nh, "/right_wheel/pid_parameters")))
     {
         ROS_ERROR("Could not initialize right wheel PID controller");
     }
     if (!nh.hasParam("/left_wheel/pid_parameters/p"))
-      nh.setParam("/left_wheel/pid_parameters/p", 1.0);
+      nh.setParam("/left_wheel/pid_parameters/p", 0.0001);
 
     if (!_left_wheel_pid_controller.init(ros::NodeHandle(nh, "/left_wheel/pid_parameters")))
     {
