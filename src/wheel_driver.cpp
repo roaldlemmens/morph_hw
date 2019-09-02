@@ -40,6 +40,11 @@ wheel_driver::wheel_driver(std::string port, ros::NodeHandle nh, std::string nam
 
 void wheel_driver::setDutyCycle(double dutyCycle)
 {
+     if (dutyCycle > 1.0) {
+     	dutyCycle = 1.0;	
+     } else if (dutyCycle < -1.0) {
+	dutyCycle = -1.0;
+     }
      vesc_.setDutyCycle(dutyCycle);
 }
 
