@@ -34,8 +34,8 @@ wheel_driver::wheel_driver(std::string port, ros::NodeHandle nh, std::string nam
       // create rotor position publisher
       rotor_position_pub_ = nh.advertise<std_msgs::Float32>(name + "/sensors/rotor_position", 10);
       ROS_INFO("Enabling rotor position publisher for %s", name_.c_str());
+      vesc_.setDetect(rotor_position_mode);
     }
-    vesc_.setDetect(rotor_position_mode);
 }
 
 void wheel_driver::setDutyCycle(double dutyCycle)
