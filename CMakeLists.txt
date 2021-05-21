@@ -134,7 +134,6 @@ add_executable(robot
 add_dependencies(robot ${catkin_EXPORTED_TARGETS})
 target_link_libraries(robot
   ${catkin_LIBRARIES}
-  vesc_driver_nodelet
   #controller_manager
 )
 ## Add cmake target dependencies of the executable
